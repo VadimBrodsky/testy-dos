@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   before_action :authenticate
 
   def index
-    @todos = Todo.by_user(current_user)
+    @todos = Todo.by_email(current_email)
   end
 
   def new
@@ -17,10 +17,6 @@ class TodosController < ApplicationController
   private
 
   def todo_parameters
-    params.require(:todo).permit(:title).merge(email: current_user)
-  end
-
-  def current_user
-    session[:current_email]
+    params.require(:todo).permit(:title).merge(email: current_email)
   end
 end
