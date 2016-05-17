@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   before_action :authenticate
 
   def index
-    @todos = Todo.by_email(current_email)
+    @todos = current_user.todos
   end
 
   def new
@@ -10,13 +10,13 @@ class TodosController < ApplicationController
   end
 
   def create
-    Todo.create(todo_parameters)
+    current_user.todos.create(todo_parameters)
     redirect_to todos_path
   end
 
   private
 
   def todo_parameters
-    params.require(:todo).permit(:title).merge(email: current_email)
+    params.require(:todo).permit(:title).merge(email: current_user.email)
   end
 end
