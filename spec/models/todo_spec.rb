@@ -8,7 +8,7 @@ describe Todo, '#completed?' do
   end
 
   it 'returns false if completed_at is nil' do
-    todo = Todo.new
+    todo = Todo.new(completed_at: nil)
 
     expect(todo).not_to be_completed
   end
