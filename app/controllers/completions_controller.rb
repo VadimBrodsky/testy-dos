@@ -4,6 +4,11 @@ class CompletionsController < ApplicationController
     redirect_to root_url
   end
 
+  def destroy
+    todo.update!(completed_at: nil)
+    redirect_to root_url
+  end
+
   private
 
   def todo
