@@ -5,7 +5,7 @@ class CompletionsController < ApplicationController
   end
 
   def destroy
-    todo.update!(completed_at: nil)
+    todo.mark_incomplete!
     redirect_to root_url
   end
 

@@ -1,5 +1,8 @@
 <li class="<%= 'completed' if todo.completed? %>">
     <%= todo.title %>
-    <%= button_to 'Mark complete', todo_completion_path(todo) %>
-    <%= button_to 'Mark incomplete', todo_completion_path(todo), method: :delete %>
+    <% if todo.completed? %>
+        <%= button_to 'Mark incomplete', todo_completion_path(todo), method: :delete %>
+    <% else %>
+        <%= button_to 'Mark complete', todo_completion_path(todo) %>
+    <% end %>
 </li>
